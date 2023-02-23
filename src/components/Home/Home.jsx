@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   decrement,
   increment,
-} from "../../redux/slices/counterSlice/counterSlice";
+} from "../../redux/slices/counter/counterSlice";
 const Home = () => {
   const count = useSelector((state) => state.counterSlice.value);
   const dispatch = useDispatch();
