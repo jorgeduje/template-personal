@@ -93,7 +93,7 @@ function Navbar(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="subtitle1" noWrap component="div" flexGrow={1}>
-            Logo
+            Brand
           </Typography>
           <Button variant="contained" sx={{textTransform: "none"}} onClick={()=>navigate("/signup")}>SignUp</Button>
           <Button variant="contained" sx={{textTransform: "none"}} onClick={()=>navigate("/login")}>Login</Button>
@@ -146,10 +146,6 @@ function Navbar(props) {
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           backgroundColor: theme.palette.secondary.main,
           minHeight: "100vh",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          marginLeft: "-20px"
         }}
       >
         <Toolbar />

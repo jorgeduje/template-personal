@@ -7,7 +7,10 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { useNavigate } from "react-router-dom";
 const ProductsList = ({ products }) => {
+
+  const navigate = useNavigate()
   return (
       <Grid container spacing={2} marginTop="50px">
         {products.map((product) => (
@@ -27,7 +30,7 @@ const ProductsList = ({ products }) => {
                 </Typography>
               </CardContent>
               <CardActions>
-                <Button size="small" variant="contained">View detail</Button>
+                <Button size="small" variant="contained" onClick={()=>navigate(`/products/${product.id}`)}>View detail</Button>
                 {/* <Button size="small" variant="contained">Learn More</Button> */}
               </CardActions>
             </Card>
