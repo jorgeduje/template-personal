@@ -1,34 +1,38 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Cart from "./components/Cart/Cart";
+import Home from "./components/Home/Home";
+import Navbar from "./components/Navbar/Navbar";
+import CartContextProvider from "./context/CartContext";
+import { ThemeProvider } from "@emotion/react";
+import { theme } from "./ThemeConfig";
+import Login from "./components/Login/Login";
+import SignUp from "./components/SignUp/SignUp";
+import ProductsListContainer from "./components/ProductsList/ProductsList.container";
+
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+  return <BrowserRouter>
+  <ThemeProvider theme={theme}>
+    <CartContextProvider>
+      <Navbar>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/products"
+            element={<ProductsListContainer />}
+          />
+          <Route
+            path="/products/:id"
+            element={<div>Aca el detalle del producto</div>}
+          />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+        </Routes>
+      </Navbar>
+    </CartContextProvider>
+  </ThemeProvider>
+</BrowserRouter>
 }
 
-export default App
+export default App;
