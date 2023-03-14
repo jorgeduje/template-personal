@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { theme } from "../../ThemeConfig";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
-import Input from "@mui/material/Input";
-import FilledInput from "@mui/material/FilledInput";
+
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -44,7 +43,7 @@ const SignUp = () => {
             alignItems="center"
             justifyContent={"center"}
           >
-            <Grid item xs={10}>
+            <Grid item xs={10} md={7}>
               <TextField
                 label="Name"
                 variant="outlined"
@@ -53,7 +52,7 @@ const SignUp = () => {
                 autoFocus={false}
               />
             </Grid>
-            <Grid item xs={10}>
+            <Grid item xs={10} md={7}>
               <TextField
                 label="Last name"
                 variant="outlined"
@@ -62,7 +61,7 @@ const SignUp = () => {
                 autoFocus={false}
               />
             </Grid>
-            <Grid item xs={10}>
+            <Grid item xs={10} md={7}>
               <TextField
                 label="Email"
                 variant="outlined"
@@ -71,13 +70,14 @@ const SignUp = () => {
                 autoFocus={false}
               />
             </Grid>
-            <Grid item xs={10}>
+            <Grid item xs={10} md={7}>
               <FormControl variant="outlined" fullWidth>
                 <InputLabel htmlFor="outlined-adornment-password">
                   Password
                 </InputLabel>
                 <OutlinedInput
                   type={showPassword ? "text" : "password"}
+                  autoComplete="current-password"
                   endAdornment={
                     <InputAdornment position="end">
                       <IconButton
@@ -95,13 +95,14 @@ const SignUp = () => {
                 />
               </FormControl>
             </Grid>
-            <Grid item xs={10}>
+            <Grid item xs={10} md={7}>
               <FormControl variant="outlined" fullWidth>
                 <InputLabel htmlFor="outlined-adornment-password">
                   Repet password
                 </InputLabel>
                 <OutlinedInput
                   type={showPassword ? "text" : "password"}
+                  autoComplete="current-password"
                   endAdornment={
                     <InputAdornment position="end">
                       <IconButton
@@ -119,7 +120,7 @@ const SignUp = () => {
                 />
               </FormControl>
             </Grid>
-            <Grid item xs={10}>
+            <Grid item xs={10} md={7}>
               <Box display={"flex"} justifyContent="flex-end">
                 <Button variant="contained">Create</Button>
               </Box>

@@ -8,6 +8,7 @@ import SignUp from "./components/SignUp/SignUp";
 import ProductsListContainer from "./components/ProductsList/ProductsList.container";
 import Cart from "./components/Cart/Cart";
 import ProductDetailContainer from "./components/ProductDetail/ProductDetail.container";
+import ProtectedRoutes from "./ProtectedRoutes";
 
 function App() {
   return (
@@ -15,15 +16,17 @@ function App() {
       <ThemeProvider theme={theme}>
         <Navbar>
           <Routes>
-            <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
-            <Route path="/products" element={<ProductsListContainer />} />
-            <Route
-              path="/products/:id"
-              element={<ProductDetailContainer />}
-            />
-            <Route path="/cart" element={<Cart />} />
+            <Route element={<ProtectedRoutes />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/products" element={<ProductsListContainer />} />
+              <Route
+                path="/products/:id"
+                element={<ProductDetailContainer />}
+              />
+              <Route path="/cart" element={<Cart />} />
+            </Route>
           </Routes>
         </Navbar>
       </ThemeProvider>

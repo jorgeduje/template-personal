@@ -17,9 +17,10 @@ import Typography from "@mui/material/Typography";
 import { theme } from "../../ThemeConfig";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
-import HomeIcon from '@mui/icons-material/Home';
-import StoreIcon from '@mui/icons-material/Store';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import HomeIcon from "@mui/icons-material/Home";
+import StoreIcon from "@mui/icons-material/Store";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { Logout } from "@mui/icons-material";
 
 const drawerWidth = 200;
 
@@ -27,15 +28,20 @@ function Navbar(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
-  const navigate = useNavigate()
-  
-  const navigateCustom = (path)=>{
-    navigate(path)
-    setMobileOpen(false)
-  }
-  
+  const navigate = useNavigate();
+  const isLogged = localStorage.getItem("token") ? true : false;
+  const navigateCustom = (path) => {
+    navigate(path);
+    setMobileOpen(false);
+  };
+
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
+  };
+
+  const logOut = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
   };
 
   const drawer = (
@@ -43,7 +49,7 @@ function Navbar(props) {
       <Toolbar />
       <List>
         <ListItem disablePadding>
-          <ListItemButton onClick={()=>navigateCustom("/")}>
+          <ListItemButton onClick={() => navigateCustom("/")}>
             <ListItemIcon>
               <HomeIcon color={"secondary"} />
             </ListItemIcon>
@@ -51,7 +57,7 @@ function Navbar(props) {
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
-          <ListItemButton onClick={()=>navigateCustom("/products")}>
+          <ListItemButton onClick={() => navigateCustom("/products")}>
             <ListItemIcon>
               <StoreIcon color={"secondary"} />
             </ListItemIcon>
@@ -59,7 +65,7 @@ function Navbar(props) {
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
-          <ListItemButton onClick={()=>navigateCustom("/cart")}>
+          <ListItemButton onClick={() => navigateCustom("/cart")}>
             <ListItemIcon>
               <ShoppingCartIcon color={"secondary"} />
             </ListItemIcon>
@@ -95,8 +101,20 @@ function Navbar(props) {
           <Typography variant="subtitle1" noWrap component="div" flexGrow={1}>
             Brand
           </Typography>
-          <Button variant="contained" sx={{textTransform: "none"}} onClick={()=>navigate("/signup")}>SignUp</Button>
-          <Button variant="contained" sx={{textTransform: "none"}} onClick={()=>navigate("/login")}>Login</Button>
+          <Button
+            variant="contained"
+            sx={{ textTransform: "none" }}
+            onClick={() => navigate("/signup")}
+          >
+            SignUp
+          </Button>
+          <Button
+            variant="contained"
+            sx={{ textTransform: "none" }}
+            onClick={isLogged ? logOut : () => navigate("/login")}
+          >
+            {isLogged ? "Log-Out" : "Log-In"}
+          </Button>
         </Toolbar>
       </AppBar>
       <Box

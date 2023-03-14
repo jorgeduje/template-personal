@@ -15,10 +15,45 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { Tooltip } from "@mui/material";
+import { FcGoogle } from "react-icons/fc";
+import { onSignIn, sigInWithGoogle } from "../../firebaseConfig";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const navigate = useNavigate();
+  const handleLoginGoggle = async () => {
+    const res = await sigInWithGoogle();
+    localStorage.setItem("token", res.user.accessToken);
+    navigate("/");
+  };
+  const ingresar = async (data) => {
+    const res = await onSignIn(data);
+    localStorage.setItem("token", res.user.accessToken);
+    navigate("/");
+  };
+
+  const { handleSubmit, handleChange, values, errors } = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    onSubmit: ingresar,
+    validationSchema: Yup.object().shape({
+      email: Yup.string()
+        .required("Este campo es obligatorio")
+        .email("Ingrese un email"),
+      password: Yup.string()
+        .required("Este campo es obligatorio")
+        .min(6, "es muy corta"),
+    }),
+    validateOnChange: false,
+  });
+
   return (
     <Box
       sx={{
@@ -31,10 +66,12 @@ const Login = () => {
         backgroundColor: theme.palette.secondary.main,
       }}
     >
-        <Box padding={3}>
-            <Typography variant="h3" color={"primary"} align="center">Welcome to the store</Typography>
-        </Box>
-      <form action="">
+      <Box padding={3}>
+        <Typography variant="h3" color={"primary"} align="center">
+          Welcome to the store
+        </Typography>
+      </Box>
+      <form action="" onSubmit={handleSubmit}>
         <Box>
           <Grid
             container
@@ -46,18 +83,31 @@ const Login = () => {
               <TextField
                 label="Email"
                 variant="outlined"
+                name="email"
+                value={values.email}
+                onChange={handleChange}
                 fullWidth
                 autoComplete="none"
                 autoFocus={false}
+                error={errors.email ? true : false}
+                helperText={errors.email}
               />
             </Grid>
             <Grid item xs={10}>
               <FormControl variant="outlined" fullWidth>
-                <InputLabel htmlFor="outlined-adornment-password">
+                <InputLabel
+                  htmlFor="outlined-adornment-password"
+                >
                   Password
                 </InputLabel>
                 <OutlinedInput
                   type={showPassword ? "text" : "password"}
+                  value={values.password}
+                  autoComplete="current-password"
+                  // helperText={errors.password}
+                  name="password"
+                  onChange={handleChange}
+                  error={errors.password ? true : false}
                   endAdornment={
                     <InputAdornment position="end">
                       <IconButton
@@ -73,10 +123,21 @@ const Login = () => {
                   label="Password"
                   fullWidth
                 />
+
+                {!!errors.password && (
+                  <FormHelperText error>{errors.password}</FormHelperText>
+                )}
               </FormControl>
             </Grid>
             <Grid item xs={10}>
-              <Button variant="contained" fullWidth>Ingresar</Button>
+              <Button variant="contained" fullWidth type="submit">
+                Ingresar
+              </Button>
+              <Tooltip title="ingresa con google">
+                <IconButton onClick={handleLoginGoggle}>
+                  <FcGoogle size={50} />
+                </IconButton>
+              </Tooltip>
             </Grid>
           </Grid>
         </Box>
