@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { theme } from "../../ThemeConfig";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
@@ -21,21 +21,29 @@ import { Tooltip } from "@mui/material";
 import { FcGoogle } from "react-icons/fc";
 import { onSignIn, sigInWithGoogle } from "../../firebaseConfig";
 import { useNavigate } from "react-router-dom";
+import GoogleIcon from "@mui/icons-material/Google";
+import { login, loginGoogle } from "../../redux/slices/auth/thunk";
+import { useDispatch, useSelector } from "react-redux";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+  const { accessToken } = useSelector((state) => state.authSlice);
   const navigate = useNavigate();
-  const handleLoginGoggle = async () => {
-    const res = await sigInWithGoogle();
-    localStorage.setItem("token", res.user.accessToken);
-    navigate("/");
-  };
-  const ingresar = async (data) => {
-    const res = await onSignIn(data);
-    localStorage.setItem("token", res.user.accessToken);
-    navigate("/");
-  };
+
+  const dispatch = useDispatch();
+
+  useEffect( ()=>{
+    if( accessToken ){
+       navigate("/")
+    }
+  }, [accessToken])
+
+  
+
+  const handleLoginGoggle = () => dispatch(loginGoogle());
+  const ingresar = (data) => dispatch(login(data));
 
   const { handleSubmit, handleChange, values, errors } = useFormik({
     initialValues: {
@@ -79,7 +87,7 @@ const Login = () => {
             // alignItems="center"
             justifyContent={"center"}
           >
-            <Grid item xs={10}>
+            <Grid item xs={12}>
               <TextField
                 label="Email"
                 variant="outlined"
@@ -93,11 +101,9 @@ const Login = () => {
                 helperText={errors.email}
               />
             </Grid>
-            <Grid item xs={10}>
+            <Grid item xs={12}>
               <FormControl variant="outlined" fullWidth>
-                <InputLabel
-                  htmlFor="outlined-adornment-password"
-                >
+                <InputLabel htmlFor="outlined-adornment-password">
                   Password
                 </InputLabel>
                 <OutlinedInput
@@ -129,15 +135,24 @@ const Login = () => {
                 )}
               </FormControl>
             </Grid>
-            <Grid item xs={10}>
-              <Button variant="contained" fullWidth type="submit">
-                Ingresar
-              </Button>
-              <Tooltip title="ingresa con google">
-                <IconButton onClick={handleLoginGoggle}>
-                  <FcGoogle size={50} />
-                </IconButton>
-              </Tooltip>
+            <Grid container justifyContent="center" spacing={3} mt={2}>
+              <Grid item xs={7} md={5}>
+                <Button variant="contained" fullWidth type="submit">
+                  Ingresar
+                </Button>
+              </Grid>
+              <Grid item xs={7} md={5}>
+                <Tooltip title="ingresa con google">
+                  <Button
+                    variant="contained"
+                    startIcon={<GoogleIcon />}
+                    onClick={handleLoginGoggle}
+                    fullWidth
+                  >
+                    Ingresa con google
+                  </Button>
+                </Tooltip>
+              </Grid>
             </Grid>
           </Grid>
         </Box>

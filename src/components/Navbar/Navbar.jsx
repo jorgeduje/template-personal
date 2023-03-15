@@ -21,15 +21,18 @@ import HomeIcon from "@mui/icons-material/Home";
 import StoreIcon from "@mui/icons-material/Store";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Logout } from "@mui/icons-material";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../redux/slices/auth/authSlice";
 
 const drawerWidth = 200;
 
 function Navbar(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
-
-  const navigate = useNavigate();
-  const isLogged = localStorage.getItem("token") ? true : false;
+const dispatch = useDispatch()
+  const {accessToken} = useSelector(state => state.authSlice)
+   const navigate = useNavigate();
+  const isLogged = accessToken ? true : false;
   const navigateCustom = (path) => {
     navigate(path);
     setMobileOpen(false);
@@ -40,7 +43,7 @@ function Navbar(props) {
   };
 
   const logOut = () => {
-    localStorage.removeItem("token");
+    dispatch(logout())
     navigate("/login");
   };
 
