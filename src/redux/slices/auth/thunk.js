@@ -2,18 +2,27 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axiosInstance from "../../../api/axiosInstances";
 import { onSignIn, register, sigInWithGoogle } from "../../../firebaseConfig";
 
-export const login = createAsyncThunk("login", async (argument, thunkAPI) => {
-  const res = await onSignIn(argument);
-
-  return res.user;
-});
+export const login = createAsyncThunk(
+  "login",
+  async (argument, { rejectWithValue }) => {
+    const res = await onSignIn(argument);
+    if (res.user.accessToken) {
+      return res.user;
+    } else {
+      return rejectWithValue("Error de autenticacion");
+    }
+  }
+);
 
 export const loginGoogle = createAsyncThunk(
   "loginGoogle",
-  async (argument, thunkAPI) => {
+  async (argument, { rejectWithValue }) => {
     const res = await sigInWithGoogle();
-
-    return res.user;
+    if (res.user.accessToken) {
+      return res.user;
+    } else {
+      return rejectWithValue("Error de autenticacion");
+    }
   }
 );
 

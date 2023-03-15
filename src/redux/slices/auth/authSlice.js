@@ -5,6 +5,7 @@ const initialState = {
   user: {},
   accessToken: localStorage.getItem("token"),
   isLoading: false,
+  errorMessage: null,
 };
 
 export const authSlice = createSlice({
@@ -26,12 +27,17 @@ export const authSlice = createSlice({
       state.accessToken = action.payload.accessToken;
       state.user = { email: action.payload.email };
       localStorage.setItem("token", action.payload.accessToken);
+      state.errorMessage = null;
     });
     builder.addCase(login.pending, (state, action) => {
       state.isLoading = true;
+      state.errorMessage = null;
+
+      console.log("cargando: ", action.payload);
     });
     builder.addCase(login.rejected, (state, action) => {
       state.isLoading = false;
+      state.errorMessage = "Error de autenticacion";
       console.log("error de login: ", action.payload);
     });
 
@@ -41,17 +47,21 @@ export const authSlice = createSlice({
       state.accessToken = action.payload.accessToken;
       state.user = { email: action.payload.email };
       localStorage.setItem("token", action.payload.accessToken);
+      state.errorMessage = null;
     });
     builder.addCase(loginGoogle.pending, (state, action) => {
       state.isLoading = true;
+      state.errorMessage = null;
+      console.log("cargando: ", action.payload);
     });
     builder.addCase(loginGoogle.rejected, (state, action) => {
       state.isLoading = false;
+      state.errorMessage = "Error de autenticacion";
       console.log("error de login: ", action.payload);
     });
     // Create account
     builder.addCase(createAccount.fulfilled, (state, action) => {
-      console.log(action.payload)
+      console.log(action.payload);
       state.isLoading = false;
       state.accessToken = action.payload.accessToken;
       state.user = { email: action.payload.email };

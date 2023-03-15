@@ -15,7 +15,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { useFormik } from "formik";
+import { ErrorMessage, useFormik } from "formik";
 import * as Yup from "yup";
 import { Tooltip } from "@mui/material";
 import { FcGoogle } from "react-icons/fc";
@@ -29,18 +29,16 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
-  const { accessToken } = useSelector((state) => state.authSlice);
+  const { accessToken, errorMessage } = useSelector((state) => state.authSlice);
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
-  useEffect( ()=>{
-    if( accessToken ){
-       navigate("/")
+  useEffect(() => {
+    if (accessToken) {
+      navigate("/");
     }
-  }, [accessToken])
-
-  
+  }, [accessToken]);
 
   const handleLoginGoggle = () => dispatch(loginGoogle());
   const ingresar = (data) => dispatch(login(data));
@@ -157,6 +155,11 @@ const Login = () => {
           </Grid>
         </Box>
       </form>
+      {errorMessage && (
+        <Typography variant="h3" color={"error"} align="center">
+          {errorMessage}
+        </Typography>
+      )}
     </Box>
   );
 };

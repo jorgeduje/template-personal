@@ -7,12 +7,12 @@ import {
   createUserWithEmailAndPassword,
 } from "firebase/auth";
 const firebaseConfig = {
-  apiKey: "AIzaSyD66ioE1BhMvcJPMp1yt7tpLHsr6C_qQ1E",
-  authDomain: "auth-react-3d154.firebaseapp.com",
-  projectId: "auth-react-3d154",
-  storageBucket: "auth-react-3d154.appspot.com",
-  messagingSenderId: "251678340934",
-  appId: "1:251678340934:web:2c32f484c62819f1b35747",
+  apiKey: import.meta.env.VITE_API_KEY,
+  authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_PROYECT_ID,
+  storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAGEING_SENDER_ID,
+  appId: import.meta.env.VITE_APP_ID,
 };
 
 const app = initializeApp(firebaseConfig);

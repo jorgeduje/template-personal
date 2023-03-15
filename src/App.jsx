@@ -8,7 +8,7 @@ import SignUp from "./components/SignUp/SignUp";
 import ProductsListContainer from "./components/ProductsList/ProductsList.container";
 import Cart from "./components/Cart/Cart";
 import ProductDetailContainer from "./components/ProductDetail/ProductDetail.container";
-import ProtectedRoutes from "./ProtectedRoutes";
+import ProtectedRoutes from "./components/ProtectedRoutes";
 
 function App() {
   return (
