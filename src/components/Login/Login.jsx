@@ -73,9 +73,14 @@ const Login = () => {
       }}
     >
       <Box padding={3}>
-        <Typography variant="h4" color={"primary"} align="center">
+        {/* <Typography variant="h4" color={"primary"} align="center">
           Inicia sesion
-        </Typography>
+        </Typography> */}
+        <img
+          src="https://res.cloudinary.com/dnqfh2chg/image/upload/v1679095868/calme_eyjf5q.jpg"
+          alt=""
+          style={{width:"300px"}}
+        />
       </Box>
       <form action="" onSubmit={handleSubmit}>
         <Box>
