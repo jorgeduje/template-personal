@@ -64,7 +64,7 @@ const Login = () => {
     <Box
       sx={{
         width: "100%",
-        height: "100vh",
+        minHeight: "100vh",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -72,14 +72,14 @@ const Login = () => {
         backgroundColor: theme.palette.secondary.main,
       }}
     >
-      <Box padding={3}>
+      <Box>
         {/* <Typography variant="h4" color={"primary"} align="center">
           Inicia sesion
         </Typography> */}
         <img
           src="https://res.cloudinary.com/dnqfh2chg/image/upload/v1679095868/calme_eyjf5q.jpg"
           alt=""
-          style={{width:"300px"}}
+          style={{width:"280px"}}
         />
       </Box>
       <form action="" onSubmit={handleSubmit}>
