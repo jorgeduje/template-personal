@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axiosInstance from "../../../api/axiosInstances";
-import { onSignIn, register, sigInWithGoogle } from "../../../firebaseConfig";
+import axiosInstance from "../../api/axiosInstances";
+import { onSignIn, register, sigInWithGoogle } from "../../firebaseConfig";
 
 export const login = createAsyncThunk(
   "login",

@@ -18,7 +18,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { register } from "../../firebaseConfig";
 import { useDispatch, useSelector } from "react-redux";
-import { createAccount } from "../../redux/slices/auth/thunk";
+import { createAccount } from "../../store/auth/thunk";
 import { useNavigate } from "react-router-dom";
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);

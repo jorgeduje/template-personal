@@ -22,7 +22,7 @@ import { useNavigate } from "react-router-dom";
 // import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 // import { Logout } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../../redux/slices/auth/authSlice";
+import { logout } from "../../store/auth/authSlice";
 import { navigation } from "../../Router/Navigation";
 
 const drawerWidth = 200;

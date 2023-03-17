@@ -22,7 +22,7 @@ import { FcGoogle } from "react-icons/fc";
 import { onSignIn, sigInWithGoogle } from "../../firebaseConfig";
 import { useNavigate } from "react-router-dom";
 import GoogleIcon from "@mui/icons-material/Google";
-import { login, loginGoogle } from "../../redux/slices/auth/thunk";
+import { login, loginGoogle } from "../../store/auth/thunk";
 import { useDispatch, useSelector } from "react-redux";
 
 const Login = () => {
@@ -64,7 +64,7 @@ const Login = () => {
     <Box
       sx={{
         width: "100%",
-        height: "100vh", 
+        height: "100vh",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
