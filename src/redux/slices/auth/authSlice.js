@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { createAccount, login, loginGoogle } from "./thunk";
 
 const initialState = {
-  user: {},
+  user: null,
   accessToken: localStorage.getItem("token"),
   isLoading: false,
   errorMessage: null,
@@ -13,8 +13,7 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     logout: (state, action) => {
-      console.log(state);
-      state.user = {};
+      state.user = null;
       state.accessToken = null;
       state.isLoading = false;
       localStorage.removeItem("token");
@@ -32,13 +31,10 @@ export const authSlice = createSlice({
     builder.addCase(login.pending, (state, action) => {
       state.isLoading = true;
       state.errorMessage = null;
-
-      console.log("cargando: ", action.payload);
     });
     builder.addCase(login.rejected, (state, action) => {
       state.isLoading = false;
-      state.errorMessage = "Error de autenticacion";
-      console.log("error de login: ", action.payload);
+      state.errorMessage = "El usuario o contraseña no existe";
     });
 
     // login with google
@@ -52,27 +48,20 @@ export const authSlice = createSlice({
     builder.addCase(loginGoogle.pending, (state, action) => {
       state.isLoading = true;
       state.errorMessage = null;
-      console.log("cargando: ", action.payload);
     });
     builder.addCase(loginGoogle.rejected, (state, action) => {
       state.isLoading = false;
-      state.errorMessage = "Error de autenticacion";
-      console.log("error de login: ", action.payload);
+      state.errorMessage = "El usuario o contraseña no existe";
     });
     // Create account
     builder.addCase(createAccount.fulfilled, (state, action) => {
-      console.log(action.payload);
       state.isLoading = false;
       state.accessToken = action.payload.accessToken;
       state.user = { email: action.payload.email };
       localStorage.setItem("token", action.payload.accessToken);
     });
-    builder.addCase(createAccount.pending, (state, action) => {
-      console.log("pendiente : ", action.payload);
-    });
-    builder.addCase(createAccount.rejected, (state, action) => {
-      console.log("error al crear cuenta : ", action.payload);
-    });
+    builder.addCase(createAccount.pending, (state, action) => {});
+    builder.addCase(createAccount.rejected, (state, action) => {});
   },
 });
 

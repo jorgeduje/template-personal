@@ -17,21 +17,22 @@ import Typography from "@mui/material/Typography";
 import { theme } from "../../ThemeConfig";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
-import HomeIcon from "@mui/icons-material/Home";
-import StoreIcon from "@mui/icons-material/Store";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { Logout } from "@mui/icons-material";
+// import HomeIcon from "@mui/icons-material/Home";
+// import StoreIcon from "@mui/icons-material/Store";
+// import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+// import { Logout } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/slices/auth/authSlice";
+import { navigation } from "../../Router/Navigation";
 
 const drawerWidth = 200;
 
 function Navbar(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
-const dispatch = useDispatch()
-  const {accessToken} = useSelector(state => state.authSlice)
-   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { accessToken } = useSelector((state) => state.authSlice);
+  const navigate = useNavigate();
   const isLogged = accessToken ? true : false;
   const navigateCustom = (path) => {
     navigate(path);
@@ -43,7 +44,7 @@ const dispatch = useDispatch()
   };
 
   const logOut = () => {
-    dispatch(logout())
+    dispatch(logout());
     navigate("/login");
   };
 
@@ -51,30 +52,18 @@ const dispatch = useDispatch()
     <div>
       <Toolbar />
       <List>
-        <ListItem disablePadding>
-          <ListItemButton onClick={() => navigateCustom("/")}>
-            <ListItemIcon>
-              <HomeIcon color={"secondary"} />
-            </ListItemIcon>
-            <ListItemText primary={"Home"} sx={{ color: "white" }} />
-          </ListItemButton>
-        </ListItem>
-        <ListItem disablePadding>
-          <ListItemButton onClick={() => navigateCustom("/products")}>
-            <ListItemIcon>
-              <StoreIcon color={"secondary"} />
-            </ListItemIcon>
-            <ListItemText primary={"Products"} sx={{ color: "white" }} />
-          </ListItemButton>
-        </ListItem>
-        <ListItem disablePadding>
-          <ListItemButton onClick={() => navigateCustom("/cart")}>
-            <ListItemIcon>
-              <ShoppingCartIcon color={"secondary"} />
-            </ListItemIcon>
-            <ListItemText primary={"Cart"} sx={{ color: "white" }} />
-          </ListItemButton>
-        </ListItem>
+        {navigation.map(({ id, path, title, Icon }) => {
+          return (
+            <ListItem disablePadding key={id}>
+              <ListItemButton onClick={() => navigateCustom(path)}>
+                <ListItemIcon>
+                  <Icon color={"secondary"} />
+                </ListItemIcon>
+                <ListItemText primary={title} sx={{ color: "white" }} />
+              </ListItemButton>
+            </ListItem>
+          );
+        })}
       </List>
     </div>
   );
@@ -104,20 +93,15 @@ const dispatch = useDispatch()
           <Typography variant="subtitle1" noWrap component="div" flexGrow={1}>
             Brand
           </Typography>
-          <Button
-            variant="contained"
-            sx={{ textTransform: "none" }}
-            onClick={() => navigate("/signup")}
-          >
-            SignUp
-          </Button>
-          <Button
-            variant="contained"
-            sx={{ textTransform: "none" }}
-            onClick={isLogged ? logOut : () => navigate("/login")}
-          >
-            {isLogged ? "Log-Out" : "Log-In"}
-          </Button>
+          {isLogged && (
+            <Button
+              variant="contained"
+              sx={{ textTransform: "none" }}
+              onClick={logOut}
+            >
+              Cerrar sesion
+            </Button>
+          )}
         </Toolbar>
       </AppBar>
       <Box

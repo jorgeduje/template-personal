@@ -15,7 +15,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { ErrorMessage, useFormik } from "formik";
+import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Tooltip } from "@mui/material";
 import { FcGoogle } from "react-icons/fc";
@@ -64,7 +64,7 @@ const Login = () => {
     <Box
       sx={{
         width: "100%",
-        height: { xs: `calc(100vh - 74px)`, sm: `calc(100vh - 80px)` }, // SOLUCIONAR { sm: `calc(100vh - 6px)` }
+        height: "100vh", 
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -73,8 +73,8 @@ const Login = () => {
       }}
     >
       <Box padding={3}>
-        <Typography variant="h3" color={"primary"} align="center">
-          Welcome to the store
+        <Typography variant="h4" color={"primary"} align="center">
+          Inicia sesion
         </Typography>
       </Box>
       <form action="" onSubmit={handleSubmit}>
@@ -85,7 +85,7 @@ const Login = () => {
             // alignItems="center"
             justifyContent={"center"}
           >
-            <Grid item xs={12}>
+            <Grid item xs={10} md={12}>
               <TextField
                 label="Email"
                 variant="outlined"
@@ -99,10 +99,10 @@ const Login = () => {
                 helperText={errors.email}
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={10} md={12}>
               <FormControl variant="outlined" fullWidth>
                 <InputLabel htmlFor="outlined-adornment-password">
-                  Password
+                  Contraseña
                 </InputLabel>
                 <OutlinedInput
                   type={showPassword ? "text" : "password"}
@@ -133,6 +133,11 @@ const Login = () => {
                 )}
               </FormControl>
             </Grid>
+            {errorMessage && (
+              <Typography variant="h6" color={"error"} align="center">
+                {errorMessage}
+              </Typography>
+            )}
             <Grid container justifyContent="center" spacing={3} mt={2}>
               <Grid item xs={7} md={5}>
                 <Button variant="contained" fullWidth type="submit">
@@ -155,11 +160,20 @@ const Login = () => {
           </Grid>
         </Box>
       </form>
-      {errorMessage && (
-        <Typography variant="h3" color={"error"} align="center">
-          {errorMessage}
-        </Typography>
-      )}
+      <Typography color={"primary"} variant={"h5"} my={4}>
+        No tienes cuenta?
+      </Typography>
+      <Grid container justifyContent="center">
+        <Grid item xs={7} md={5}>
+          <Button
+            variant="contained"
+            fullWidth
+            onClick={() => navigate("/signup")}
+          >
+            Registrate
+          </Button>
+        </Grid>
+      </Grid>
     </Box>
   );
 };

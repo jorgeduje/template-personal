@@ -5,7 +5,6 @@ import ProductDetail from "./ProductDetail";
 
 const ProductDetailContainer = () => {
   const { id } = useParams();
-  console.log(id)
   const [product, setProduct] = useState({});
 
   useEffect(() => {

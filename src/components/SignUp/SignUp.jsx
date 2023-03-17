@@ -62,7 +62,7 @@ const SignUp = () => {
     <Box
       sx={{
         width: "100%",
-        height: { xs: `calc(100vh - 74px)`, sm: `calc(100vh - 80px)` }, // SOLUCIONAR { sm: `calc(100vh - 6px)` }
+        height: "100vh",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -72,7 +72,7 @@ const SignUp = () => {
     >
       <Box padding={3}>
         <Typography variant="h3" color={"primary"} align="center">
-          Create Account
+          Crear cuenta
         </Typography>
       </Box>
       <form action="" onSubmit={handleSubmit}>
@@ -100,7 +100,7 @@ const SignUp = () => {
             <Grid item xs={10} md={7}>
               <FormControl variant="outlined" fullWidth>
                 <InputLabel htmlFor="outlined-adornment-password">
-                  Password
+                  Contraseña
                 </InputLabel>
                 <OutlinedInput
                   type={showPassword ? "text" : "password"}
@@ -141,7 +141,7 @@ const SignUp = () => {
             <Grid item xs={10} md={7}>
               <FormControl variant="outlined" fullWidth>
                 <InputLabel htmlFor="outlined-adornment-password">
-                  Repet password
+                  Confirmar contraseña
                 </InputLabel>
                 <OutlinedInput
                   type={showPassword ? "text" : "password"}
@@ -178,12 +178,21 @@ const SignUp = () => {
                 ) : null}
               </FormControl>
             </Grid>
-            <Grid item xs={10} md={7}>
-              <Box display={"flex"} justifyContent="flex-end">
-                <Button variant="contained" type="submit">
-                  Create
+            <Grid container justifyContent="center" spacing={3} mt={2}>
+              <Grid item xs={10} md={3}>
+                <Button variant="contained" type="submit" fullWidth>
+                  Crear
                 </Button>
-              </Box>
+              </Grid>
+              <Grid item xs={10} md={3}>
+                <Button
+                  variant="contained"
+                  fullWidth
+                  onClick={() => navigate("/login")}
+                >
+                  Regresar
+                </Button>
+              </Grid>
             </Grid>
           </Grid>
         </Box>
