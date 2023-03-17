@@ -139,20 +139,61 @@ const Login = () => {
               </Typography>
             )}
             <Grid container justifyContent="center" spacing={3} mt={2}>
-              <Grid item xs={7} md={5}>
-                <Button variant="contained" fullWidth type="submit">
+              <Grid item xs={8} md={5}>
+                <Button
+                  variant="contained"
+                  fullWidth
+                  type="submit"
+                  sx={{
+                    color: "white",
+                    textTransform: "none",
+                    textShadow: "2px 2px 2px grey",
+                  }}
+                >
                   Ingresar
                 </Button>
               </Grid>
-              <Grid item xs={7} md={5}>
+              <Grid item xs={8} md={5}>
                 <Tooltip title="ingresa con google">
                   <Button
                     variant="contained"
                     startIcon={<GoogleIcon />}
                     onClick={handleLoginGoggle}
                     fullWidth
+                    sx={{
+                      color: "white",
+                      textTransform: "none",
+                      textShadow: "2px 2px 2px grey",
+                    }}
                   >
                     Ingresa con google
+                  </Button>
+                </Tooltip>
+              </Grid>
+              <Grid item xs={8} md={8}>
+                <Typography
+                  color={"primary"}
+                  variant={"h5"}
+                  mt={1}
+                  align="center"
+                >
+                  No tienes cuenta?
+                </Typography>
+              </Grid>
+              <Grid item xs={8} md={5}>
+                <Tooltip title="ingresa con google">
+                  <Button
+                    variant="contained"
+                    fullWidth
+                    onClick={() => navigate("/signup")}
+                    type="button"
+                    sx={{
+                      color: "white",
+                      textTransform: "none",
+                      textShadow: "2px 2px 2px grey",
+                    }}
+                  >
+                    Registrate
                   </Button>
                 </Tooltip>
               </Grid>
@@ -160,20 +201,6 @@ const Login = () => {
           </Grid>
         </Box>
       </form>
-      <Typography color={"primary"} variant={"h5"} my={4}>
-        No tienes cuenta?
-      </Typography>
-      <Grid container justifyContent="center">
-        <Grid item xs={7} md={5}>
-          <Button
-            variant="contained"
-            fullWidth
-            onClick={() => navigate("/signup")}
-          >
-            Registrate
-          </Button>
-        </Grid>
-      </Grid>
     </Box>
   );
 };

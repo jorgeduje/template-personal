@@ -178,17 +178,31 @@ const SignUp = () => {
                 ) : null}
               </FormControl>
             </Grid>
-            <Grid container justifyContent="center" spacing={3} mt={2}>
-              <Grid item xs={10} md={3}>
-                <Button variant="contained" type="submit" fullWidth>
-                  Crear
+            <Grid container justifyContent="center" spacing={2} mt={2}>
+              <Grid item xs={8} md={3}>
+                <Button
+                  variant="contained"
+                  type="submit"
+                  fullWidth
+                  sx={{
+                    color: "white",
+                    textTransform: "none",
+                    textShadow: "2px 2px 2px grey",
+                  }}
+                >
+                  Crear cuenta
                 </Button>
               </Grid>
-              <Grid item xs={10} md={3}>
+              <Grid item xs={8} md={3}>
                 <Button
                   variant="contained"
                   fullWidth
                   onClick={() => navigate("/login")}
+                  sx={{
+                    color: "white",
+                    textTransform: "none",
+                    textShadow: "2px 2px 2px grey",
+                  }}
                 >
                   Regresar
                 </Button>
