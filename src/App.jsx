@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, HashRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import { ThemeProvider } from "@emotion/react";
 import { theme } from "./ThemeConfig";
@@ -10,7 +10,7 @@ function App() {
   const { user } = useSelector((state) => state.authSlice);
 
   return (
-    <HashRouter>
+    <BrowserRouter>
       <ThemeProvider theme={theme}>
         {user ? (
           <Navbar>
@@ -20,7 +20,7 @@ function App() {
           <AppRouter />
         )}
       </ThemeProvider>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 
