@@ -18,12 +18,60 @@ import Typography from "@mui/material/Typography";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Tooltip } from "@mui/material";
-import { FcGoogle } from "react-icons/fc";
-import { onSignIn, sigInWithGoogle } from "../../firebaseConfig";
+
 import { useNavigate } from "react-router-dom";
 import GoogleIcon from "@mui/icons-material/Google";
 import { login, loginGoogle } from "../../store/auth/thunk";
 import { useDispatch, useSelector } from "react-redux";
+import {  styled } from '@mui/material/styles';
+const CssTextField = styled(TextField)({
+  '& label.Mui-focused': {
+    color: '#513a45',
+    width: "100px"
+  },
+  '& .MuiInput-underline:after': {
+    borderBottomColor: '#cc9b9a',
+  },
+  '& .MuiOutlinedInput-root': {
+    '& fieldset': {
+      borderColor: '#cc9b9a',
+    },
+    '&:hover fieldset': {
+      borderColor: '#513a45',
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: '#cc9b9a',
+    },
+  },
+  '& input:valid:focus + fieldset': {
+    borderLeftWidth: 6,
+    padding: '4px !important', // override inline-style
+  }
+});
+const CssTextField2 = styled(FormControl)({
+  '& label.Mui-focused': {
+    color: '#513a45',
+    width: "100px"
+  },
+  '& .MuiInput-underline:after': {
+    borderBottomColor: '#cc9b9a',
+  },
+  '& .MuiOutlinedInput-root': {
+    '& fieldset': {
+      borderColor: '#cc9b9a',
+    },
+    '&:hover fieldset': {
+      borderColor: '#513a45',
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: '#cc9b9a',
+    },
+  },
+  '& input:valid:focus + fieldset': {
+    borderLeftWidth: 6,
+    padding: '4px !important', // override inline-style
+  }
+});
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -77,7 +125,7 @@ const Login = () => {
           Inicia sesion
         </Typography> */}
         <img
-          src="https://res.cloudinary.com/dnqfh2chg/image/upload/v1679095868/calme_eyjf5q.jpg"
+          src="https://res.cloudinary.com/dnqfh2chg/image/upload/v1679269993/01_1_bymnbs.png"
           alt=""
           style={{width:"280px"}}
         />
@@ -86,12 +134,12 @@ const Login = () => {
         <Box>
           <Grid
             container
-            spacing={2}
+            rowSpacing={2}
             // alignItems="center"
             justifyContent={"center"}
           >
             <Grid item xs={10} md={12}>
-              <TextField
+              <CssTextField
                 label="Email"
                 variant="outlined"
                 name="email"
@@ -105,7 +153,7 @@ const Login = () => {
               />
             </Grid>
             <Grid item xs={10} md={12}>
-              <FormControl variant="outlined" fullWidth>
+              <CssTextField2 variant="outlined" fullWidth>
                 <InputLabel htmlFor="outlined-adornment-password">
                   Contraseña
                 </InputLabel>
@@ -136,7 +184,7 @@ const Login = () => {
                 {!!errors.password && (
                   <FormHelperText error>{errors.password}</FormHelperText>
                 )}
-              </FormControl>
+              </CssTextField2>
             </Grid>
             {errorMessage && (
               <Typography variant="h6" color={"error"} align="center">
@@ -177,7 +225,7 @@ const Login = () => {
               </Grid>
               <Grid item xs={8} md={8}>
                 <Typography
-                  color={"primary"}
+                  color={"secondary.primary"}
                   variant={"h5"}
                   mt={1}
                   align="center"

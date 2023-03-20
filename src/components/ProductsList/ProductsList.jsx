@@ -40,6 +40,11 @@ const ProductsList = ({ products }) => {
                 size="small"
                 variant="contained"
                 onClick={() => navigate(`/products/${product.id}`)}
+                sx={{
+                  color: "white",
+                  textTransform: "none",
+                  textShadow: "2px 2px 2px grey",
+                }}
               >
                Ver detalle
               </Button>

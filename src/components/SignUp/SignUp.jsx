@@ -20,6 +20,57 @@ import { register } from "../../firebaseConfig";
 import { useDispatch, useSelector } from "react-redux";
 import { createAccount } from "../../store/auth/thunk";
 import { useNavigate } from "react-router-dom";
+import {  styled } from '@mui/material/styles';
+const CssTextField = styled(TextField)({
+  '& label.Mui-focused': {
+    color: '#513a45',
+    width: "100px"
+  },
+  '& .MuiInput-underline:after': {
+    borderBottomColor: '#cc9b9a',
+  },
+  '& .MuiOutlinedInput-root': {
+    '& fieldset': {
+      borderColor: '#cc9b9a',
+    },
+    '&:hover fieldset': {
+      borderColor: '#513a45',
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: '#cc9b9a',
+    },
+  },
+  '& input:valid:focus + fieldset': {
+    borderLeftWidth: 6,
+    padding: '4px !important', // override inline-style
+  }
+});
+const CssTextField2 = styled(FormControl)({
+  '& label.Mui-focused': {
+    color: '#513a45',
+    width: "100px"
+  },
+  '& .MuiInput-underline:after': {
+    borderBottomColor: '#cc9b9a',
+  },
+  '& .MuiOutlinedInput-root': {
+    '& fieldset': {
+      borderColor: '#cc9b9a',
+    },
+    '&:hover fieldset': {
+      borderColor: '#513a45',
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: '#cc9b9a',
+    },
+  },
+  '& input:valid:focus + fieldset': {
+    borderLeftWidth: 6,
+    padding: '4px !important', // override inline-style
+  }
+});
+
+
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -71,7 +122,7 @@ const SignUp = () => {
       }}
     >
       <Box padding={3}>
-        <Typography variant="h3" color={"primary"} align="center">
+        <Typography variant="h3" color={"secondary.primary"} align="center">
           Crear cuenta
         </Typography>
       </Box>
@@ -79,12 +130,13 @@ const SignUp = () => {
         <Box>
           <Grid
             container
-            spacing={2}
+            rowSpacing={2}
             alignItems="center"
             justifyContent={"center"}
           >
             <Grid item xs={10} md={7}>
-              <TextField
+              <CssTextField
+                color="primary"
                 label="Email"
                 variant="outlined"
                 fullWidth
@@ -98,7 +150,7 @@ const SignUp = () => {
               />
             </Grid>
             <Grid item xs={10} md={7}>
-              <FormControl variant="outlined" fullWidth>
+              <CssTextField2 variant="outlined" fullWidth>
                 <InputLabel htmlFor="outlined-adornment-password">
                   Contraseña
                 </InputLabel>
@@ -136,12 +188,12 @@ const SignUp = () => {
                     {errors.password}
                   </span>
                 ) : null}
-              </FormControl>
+              </CssTextField2>
             </Grid>
             <Grid item xs={10} md={7}>
-              <FormControl variant="outlined" fullWidth>
+              <CssTextField2 variant="outlined" fullWidth>
                 <InputLabel htmlFor="outlined-adornment-password">
-                  Confirmar contraseña
+                  Confirmar
                 </InputLabel>
                 <OutlinedInput
                   type={showPassword ? "text" : "password"}
@@ -176,7 +228,7 @@ const SignUp = () => {
                     {errors.repetPassword}
                   </span>
                 ) : null}
-              </FormControl>
+              </CssTextField2>
             </Grid>
             <Grid container justifyContent="center" spacing={2} mt={2}>
               <Grid item xs={8} md={3}>

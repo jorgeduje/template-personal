@@ -96,8 +96,12 @@ function Navbar(props) {
           {isLogged && (
             <Button
               variant="contained"
-              sx={{ textTransform: "none" }}
               onClick={logOut}
+              sx={{
+                color: "white",
+                textTransform: "none",
+                textShadow: "2px 2px 2px grey",
+              }}
             >
               Cerrar sesion
             </Button>

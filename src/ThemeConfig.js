@@ -3,9 +3,10 @@ import { indigo, pink } from "@mui/material/colors";
 
 export const theme = createTheme({
   palette: {
-    primary: { main: "#d7a9a9" },
+    primary: { main: "#cc9b9a" },
     secondary: {
       main: "#f3eeea",
+      primary: "#513a45"
     },
   },
 });
