@@ -21,6 +21,7 @@ import { Avatar} from "@mui/material";
 import LogoutIcon from "@mui/icons-material/ShoppingCart";
 
 
+
 const drawerWidth = 200;
 
 function Navbar(props) {
@@ -29,9 +30,6 @@ function Navbar(props) {
   const dispatch = useDispatch();
   const { accessToken, user } = useSelector((state) => state.authSlice);
   const navigate = useNavigate();
-  const isLogged = accessToken ? true : false;
-
-  const name = user?.name?.split(" ")[0];
   const navigateCustom = (path) => {
     navigate(path);
     setMobileOpen(false);
@@ -59,7 +57,7 @@ function Navbar(props) {
         <Avatar
           alt="Remy Sharp"
           src={user.photo}
-          onClick={() => console.log("hola")}
+          // onClick={() => console.log("hola")}
         />
       </Box>
       <List>
@@ -99,19 +97,18 @@ function Navbar(props) {
           width: { sm: `calc(100% - ${drawerWidth}px)` },
         }}
       >
-        <Toolbar sx={{ gap: "20px" }}>
+        <Toolbar sx={{ gap: "20px", display: "flex", justifyContent: "space-between" }}>
+          <Typography variant="h6" color={"secondary.primary"}>Calme</Typography>
           <IconButton
-            color="inherit"
+            color="secondary.primary"
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
             sx={{ mr: 2, display: { sm: "none" } }}
           >
-            <MenuIcon />
+            <MenuIcon color="secondary.primary" />
           </IconButton>
-          <Typography variant="subtitle1" noWrap component="div" flexGrow={1}>
-            Brand
-          </Typography>
+          
         </Toolbar>
       </AppBar>
       <Box
@@ -123,6 +120,7 @@ function Navbar(props) {
           container={container}
           variant="temporary"
           open={mobileOpen}
+          anchor={"right"}
           onClose={handleDrawerToggle}
           ModalProps={{
             keepMounted: true,

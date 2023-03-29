@@ -52,7 +52,6 @@ export const authSlice = createSlice({
 
     // login with google
     builder.addCase(loginGoogle.fulfilled, (state, action) => {
-      console.log(action.payload);
       state.isLoading = false;
       state.accessToken = action.payload.accessToken;
       state.user = {

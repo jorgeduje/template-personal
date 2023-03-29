@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 const ProductsList = ({ products }) => {
   const navigate = useNavigate();
   return (
-    <Grid container spacing={2} marginTop="50px">
+    <Grid container rowSpacing={2} marginTop="50px">
       {products.map((product) => (
         <Grid
           item
