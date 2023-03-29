@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { createAccount, login, loginGoogle } from "./thunk";
 
 const initialState = {
-  user: localStorage.getItem("user"),
+  user: JSON.parse(localStorage.getItem("user")),
   accessToken: localStorage.getItem("token"),
   isLoading: false,
   errorMessage: null,
@@ -25,9 +25,20 @@ export const authSlice = createSlice({
     builder.addCase(login.fulfilled, (state, action) => {
       state.isLoading = false;
       state.accessToken = action.payload.accessToken;
-      state.user = { email: action.payload.email };
+      state.user = {
+        name: action.payload.displayName,
+        email: action.payload.email,
+        photo: action.payload.photoURL,
+      };
       localStorage.setItem("token", action.payload.accessToken);
-      localStorage.setItem("user", action.payload.email);
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          name: action.payload.displayName,
+          email: action.payload.email,
+          photo: action.payload.photoURL,
+        })
+      );
       state.errorMessage = null;
     });
     builder.addCase(login.pending, (state, action) => {
@@ -41,12 +52,23 @@ export const authSlice = createSlice({
 
     // login with google
     builder.addCase(loginGoogle.fulfilled, (state, action) => {
+      console.log(action.payload);
       state.isLoading = false;
       state.accessToken = action.payload.accessToken;
-      state.user = { email: action.payload.email };
+      state.user = {
+        name: action.payload.displayName,
+        email: action.payload.email,
+        photo: action.payload.photoURL,
+      };
       localStorage.setItem("token", action.payload.accessToken);
-      localStorage.setItem("user", action.payload.email);
-
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          name: action.payload.displayName,
+          email: action.payload.email,
+          photo: action.payload.photoURL,
+        })
+      );
       state.errorMessage = null;
     });
     builder.addCase(loginGoogle.pending, (state, action) => {
@@ -61,8 +83,20 @@ export const authSlice = createSlice({
     builder.addCase(createAccount.fulfilled, (state, action) => {
       state.isLoading = false;
       state.accessToken = action.payload.accessToken;
-      state.user = { email: action.payload.email };
+      state.user = {
+        name: action.payload.displayName,
+        email: action.payload.email,
+        photo: action.payload.photoURL,
+      };
       localStorage.setItem("token", action.payload.accessToken);
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          name: action.payload.displayName,
+          email: action.payload.email,
+          photo: action.payload.photoURL,
+        })
+      );
     });
     builder.addCase(createAccount.pending, (state, action) => {});
     builder.addCase(createAccount.rejected, (state, action) => {});

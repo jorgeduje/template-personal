@@ -2,10 +2,8 @@ import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
-import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -15,15 +13,13 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { theme } from "../../ThemeConfig";
-import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
-// import HomeIcon from "@mui/icons-material/Home";
-// import StoreIcon from "@mui/icons-material/Store";
-// import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-// import { Logout } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/auth/authSlice";
 import { navigation } from "../../Router/Navigation";
+import { Avatar} from "@mui/material";
+import LogoutIcon from "@mui/icons-material/ShoppingCart";
+
 
 const drawerWidth = 200;
 
@@ -31,9 +27,11 @@ function Navbar(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const dispatch = useDispatch();
-  const { accessToken } = useSelector((state) => state.authSlice);
+  const { accessToken, user } = useSelector((state) => state.authSlice);
   const navigate = useNavigate();
   const isLogged = accessToken ? true : false;
+
+  const name = user?.name?.split(" ")[0];
   const navigateCustom = (path) => {
     navigate(path);
     setMobileOpen(false);
@@ -51,6 +49,19 @@ function Navbar(props) {
   const drawer = (
     <div>
       <Toolbar />
+      <Box
+        display={"flex"}
+        flexDirection="column"
+        spacing={0}
+        justifyContent="center"
+        alignItems={"center"}
+      >
+        <Avatar
+          alt="Remy Sharp"
+          src={user.photo}
+          onClick={() => console.log("hola")}
+        />
+      </Box>
       <List>
         {navigation.map(({ id, path, title, Icon }) => {
           return (
@@ -65,6 +76,14 @@ function Navbar(props) {
           );
         })}
       </List>
+      <ListItem disablePadding>
+        <ListItemButton onClick={logOut}>
+          <ListItemIcon>
+            <LogoutIcon color={"secondary"} />
+          </ListItemIcon>
+          <ListItemText primary={"Cerrar sesion"} sx={{ color: "white" }} />
+        </ListItemButton>
+      </ListItem>
     </div>
   );
 
@@ -93,19 +112,6 @@ function Navbar(props) {
           <Typography variant="subtitle1" noWrap component="div" flexGrow={1}>
             Brand
           </Typography>
-          {isLogged && (
-            <Button
-              variant="contained"
-              onClick={logOut}
-              sx={{
-                color: "white",
-                textTransform: "none",
-                textShadow: "2px 2px 2px grey",
-              }}
-            >
-              Cerrar sesion
-            </Button>
-          )}
         </Toolbar>
       </AppBar>
       <Box
