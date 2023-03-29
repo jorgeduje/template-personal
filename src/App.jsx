@@ -7,12 +7,12 @@ import AppRouter from "./Router/AppRouter";
 import { useSelector } from "react-redux";
 
 function App() {
-  const { user } = useSelector((state) => state.authSlice);
+  const { accessToken } = useSelector((state) => state.authSlice);
 
   return (
     <BrowserRouter>
       <ThemeProvider theme={theme}>
-        {user ? (
+        {accessToken ? (
           <Navbar>
             <AppRouter />
           </Navbar>

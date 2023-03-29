@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { createAccount, login, loginGoogle } from "./thunk";
 
 const initialState = {
-  user: null,
+  user: localStorage.getItem("user"),
   accessToken: localStorage.getItem("token"),
   isLoading: false,
   errorMessage: null,
@@ -17,6 +17,7 @@ export const authSlice = createSlice({
       state.accessToken = null;
       state.isLoading = false;
       localStorage.removeItem("token");
+      localStorage.removeItem("user");
     },
   },
   extraReducers: (builder) => {
@@ -26,6 +27,7 @@ export const authSlice = createSlice({
       state.accessToken = action.payload.accessToken;
       state.user = { email: action.payload.email };
       localStorage.setItem("token", action.payload.accessToken);
+      localStorage.setItem("user", action.payload.email);
       state.errorMessage = null;
     });
     builder.addCase(login.pending, (state, action) => {
@@ -43,6 +45,8 @@ export const authSlice = createSlice({
       state.accessToken = action.payload.accessToken;
       state.user = { email: action.payload.email };
       localStorage.setItem("token", action.payload.accessToken);
+      localStorage.setItem("user", action.payload.email);
+
       state.errorMessage = null;
     });
     builder.addCase(loginGoogle.pending, (state, action) => {
