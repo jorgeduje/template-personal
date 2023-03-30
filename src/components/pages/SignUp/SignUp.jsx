@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { theme } from "../../ThemeConfig";
+import React from "react";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
-
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -14,101 +12,66 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { useFormik } from "formik";
-import * as Yup from "yup";
-import { register } from "../../firebaseConfig";
-import { useDispatch, useSelector } from "react-redux";
-import { createAccount } from "../../store/auth/thunk";
-import { useNavigate } from "react-router-dom";
-import {  styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
+import { theme } from "../../../ThemeConfig";
+
 const CssTextField = styled(TextField)({
-  '& label.Mui-focused': {
-    color: '#513a45',
-    width: "100px"
+  "& label.Mui-focused": {
+    color: "#513a45",
+    width: "100px",
   },
-  '& .MuiInput-underline:after': {
-    borderBottomColor: '#cc9b9a',
+  "& .MuiInput-underline:after": {
+    borderBottomColor: "#cc9b9a",
   },
-  '& .MuiOutlinedInput-root': {
-    '& fieldset': {
-      borderColor: '#cc9b9a',
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      borderColor: "#cc9b9a",
     },
-    '&:hover fieldset': {
-      borderColor: '#513a45',
+    "&:hover fieldset": {
+      borderColor: "#513a45",
     },
-    '&.Mui-focused fieldset': {
-      borderColor: '#cc9b9a',
+    "&.Mui-focused fieldset": {
+      borderColor: "#cc9b9a",
     },
   },
-  '& input:valid:focus + fieldset': {
+  "& input:valid:focus + fieldset": {
     borderLeftWidth: 6,
-    padding: '4px !important', // override inline-style
-  }
+    padding: "4px !important", // override inline-style
+  },
 });
 const CssTextField2 = styled(FormControl)({
-  '& label.Mui-focused': {
-    color: '#513a45',
-    width: "100px"
+  "& label.Mui-focused": {
+    color: "#513a45",
+    width: "100px",
   },
-  '& .MuiInput-underline:after': {
-    borderBottomColor: '#cc9b9a',
+  "& .MuiInput-underline:after": {
+    borderBottomColor: "#cc9b9a",
   },
-  '& .MuiOutlinedInput-root': {
-    '& fieldset': {
-      borderColor: '#cc9b9a',
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      borderColor: "#cc9b9a",
     },
-    '&:hover fieldset': {
-      borderColor: '#513a45',
+    "&:hover fieldset": {
+      borderColor: "#513a45",
     },
-    '&.Mui-focused fieldset': {
-      borderColor: '#cc9b9a',
+    "&.Mui-focused fieldset": {
+      borderColor: "#cc9b9a",
     },
   },
-  '& input:valid:focus + fieldset': {
+  "& input:valid:focus + fieldset": {
     borderLeftWidth: 6,
-    padding: '4px !important', // override inline-style
-  }
+    padding: "4px !important", // override inline-style
+  },
 });
-
-
-const SignUp = () => {
-  const [showPassword, setShowPassword] = useState(false);
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
-  const { accessToken } = useSelector((state) => state.authSlice);
-
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const register = (data) => {
-    dispatch(createAccount(data));
-  };
-
-  useEffect(() => {
-    if (accessToken) {
-      navigate("/");
-    }
-  }, [accessToken]);
-
-  const { handleSubmit, handleChange, values, errors } = useFormik({
-    initialValues: {
-      email: "",
-      password: "",
-      repetPassword: "",
-    },
-    onSubmit: register,
-    validationSchema: Yup.object().shape({
-      email: Yup.string()
-        .required("Este campo es obligatorio")
-        .email("Ingrese un email"),
-      password: Yup.string()
-        .required("Este campo es obligatorio")
-        .min(6, "es muy corta"),
-      repetPassword: Yup.string()
-        .required("Este campo es obligatorio")
-        .oneOf([Yup.ref("password"), null], "Las contraseñas no coinciden"),
-    }),
-    validateOnChange: false,
-  });
+const SignUp = ({
+  handleSubmit,
+  handleChange,
+  errors,
+  values,
+  showPassword,
+  handleClickShowPassword,
+  navigate,
+}) => {
   return (
     <Box
       sx={{

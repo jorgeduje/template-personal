@@ -1,7 +1,7 @@
-import Cart from "../components/Cart/Cart";
-import Home from "../components/Home/Home";
-import ProductDetailContainer from "../components/ProductDetail/ProductDetail.container";
-import ProductsListContainer from "../components/ProductsList/ProductsList.container";
+import Cart from "../components/pages/Cart/Cart";
+import Home from "../components/pages/Home/Home";
+import ProductDetailContainer from "../components/pages/ProductDetail/ProductDetail.container";
+import ProductsListContainer from "../components/pages/ProductsList/ProductsList.container";
 
 export const MenutItems = [
   {

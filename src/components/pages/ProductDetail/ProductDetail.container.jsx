@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { products } from "../../productsMock";
+import { products } from "../../../productsMock";
 import ProductDetail from "./ProductDetail";
 
 const ProductDetailContainer = () => {

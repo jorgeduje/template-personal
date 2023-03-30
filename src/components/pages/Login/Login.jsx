@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { theme } from "../../ThemeConfig";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import Input from "@mui/material/Input";
@@ -21,56 +20,57 @@ import { Tooltip } from "@mui/material";
 
 import { useNavigate } from "react-router-dom";
 import GoogleIcon from "@mui/icons-material/Google";
-import { login, loginGoogle } from "../../store/auth/thunk";
 import { useDispatch, useSelector } from "react-redux";
-import {  styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
+import { theme } from "../../../ThemeConfig";
+import { login, loginGoogle } from "../../../store/auth/thunk";
 const CssTextField = styled(TextField)({
-  '& label.Mui-focused': {
-    color: '#513a45',
-    width: "100px"
+  "& label.Mui-focused": {
+    color: "#513a45",
+    width: "100px",
   },
-  '& .MuiInput-underline:after': {
-    borderBottomColor: '#cc9b9a',
+  "& .MuiInput-underline:after": {
+    borderBottomColor: "#cc9b9a",
   },
-  '& .MuiOutlinedInput-root': {
-    '& fieldset': {
-      borderColor: '#cc9b9a',
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      borderColor: "#cc9b9a",
     },
-    '&:hover fieldset': {
-      borderColor: '#513a45',
+    "&:hover fieldset": {
+      borderColor: "#513a45",
     },
-    '&.Mui-focused fieldset': {
-      borderColor: '#cc9b9a',
+    "&.Mui-focused fieldset": {
+      borderColor: "#cc9b9a",
     },
   },
-  '& input:valid:focus + fieldset': {
+  "& input:valid:focus + fieldset": {
     borderLeftWidth: 6,
-    padding: '4px !important', // override inline-style
-  }
+    padding: "4px !important", // override inline-style
+  },
 });
 const CssTextField2 = styled(FormControl)({
-  '& label.Mui-focused': {
-    color: '#513a45',
-    width: "100px"
+  "& label.Mui-focused": {
+    color: "#513a45",
+    width: "100px",
   },
-  '& .MuiInput-underline:after': {
-    borderBottomColor: '#cc9b9a',
+  "& .MuiInput-underline:after": {
+    borderBottomColor: "#cc9b9a",
   },
-  '& .MuiOutlinedInput-root': {
-    '& fieldset': {
-      borderColor: '#cc9b9a',
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      borderColor: "#cc9b9a",
     },
-    '&:hover fieldset': {
-      borderColor: '#513a45',
+    "&:hover fieldset": {
+      borderColor: "#513a45",
     },
-    '&.Mui-focused fieldset': {
-      borderColor: '#cc9b9a',
+    "&.Mui-focused fieldset": {
+      borderColor: "#cc9b9a",
     },
   },
-  '& input:valid:focus + fieldset': {
+  "& input:valid:focus + fieldset": {
     borderLeftWidth: 6,
-    padding: '4px !important', // override inline-style
-  }
+    padding: "4px !important", // override inline-style
+  },
 });
 
 const Login = () => {
@@ -127,7 +127,7 @@ const Login = () => {
         <img
           src="https://res.cloudinary.com/dnqfh2chg/image/upload/v1679269993/01_1_bymnbs.png"
           alt=""
-          style={{width:"280px"}}
+          style={{ width: "280px" }}
         />
       </Box>
       <form action="" onSubmit={handleSubmit}>

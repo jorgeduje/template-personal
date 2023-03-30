@@ -12,11 +12,11 @@ import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { theme } from "../../ThemeConfig";
+import { theme } from "../../../ThemeConfig";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../../store/auth/authSlice";
-import { navigation } from "../../Router/Navigation";
+import { logout } from "../../../store/auth/authSlice";
+import { navigation } from "../../../Router/Navigation";
 import { Avatar} from "@mui/material";
 import LogoutIcon from "@mui/icons-material/ShoppingCart";
 
