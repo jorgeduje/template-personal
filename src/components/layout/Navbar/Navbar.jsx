@@ -18,7 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../store/auth/authSlice";
 import { navigation } from "../../../Router/Navigation";
 import { Avatar} from "@mui/material";
-import LogoutIcon from "@mui/icons-material/ShoppingCart";
+import LogoutIcon from '@mui/icons-material/Logout';
 
 
 
@@ -98,7 +98,17 @@ function Navbar(props) {
         }}
       >
         <Toolbar sx={{ gap: "20px", display: "flex", justifyContent: "space-between" }}>
-          <Typography variant="h6" color={"secondary.primary"}>Calme</Typography>
+          {/* <Typography variant="h6" color={"secondary.primary"}>Calme</Typography> */}
+          <Box>
+        {/* <Typography variant="h4" color={"primary"} align="center">
+          Inicia sesion
+        </Typography> */}
+        <img
+          src="https://res.cloudinary.com/dnqfh2chg/image/upload/v1680267428/03_nemivw.png"
+          alt=""
+          style={{ width: "70px" }}
+        />
+      </Box>
           <IconButton
             color="secondary.primary"
             aria-label="open drawer"
@@ -155,10 +165,11 @@ function Navbar(props) {
         component="main"
         sx={{
           flexGrow: 1,
-          p: 1,
+          py: 4,
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           backgroundColor: theme.palette.secondary.main,
           minHeight: "100vh",
+          // marginBottom: "50px"
         }}
       >
         <Toolbar />

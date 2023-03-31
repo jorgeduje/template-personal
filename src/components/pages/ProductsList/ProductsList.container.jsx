@@ -1,14 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { products } from "../../../productsMock";
-import ProductsList from "./ProductsList";
+import { Typography } from "@mui/material";
 
 const ProductsListContainer = () => {
-  const [productsList, setProductsList] = useState([]);
-  useEffect(() => {
-    setProductsList(products);
-  }, []);
-
-  return <ProductsList products={products}/>;
+  return <Typography align="center" variant="h4" color={"secondary.primary"}>Servicios</Typography>;
 };
 
 export default ProductsListContainer;

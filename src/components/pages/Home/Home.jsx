@@ -1,8 +1,10 @@
-import {  Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 const Home = () => {
   return (
     <div>
-      <Typography variant="h2">Template personalizado</Typography>
+      <Typography align="center" variant="h4" color={"secondary.primary"}>
+        Calme - Spa y belleza
+      </Typography>
     </div>
   );
 };
