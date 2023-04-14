@@ -17,10 +17,8 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../store/auth/authSlice";
 import { navigation } from "../../../Router/Navigation";
-import { Avatar} from "@mui/material";
-import LogoutIcon from '@mui/icons-material/Logout';
-
-
+import { Avatar } from "@mui/material";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 const drawerWidth = 200;
 
@@ -97,18 +95,16 @@ function Navbar(props) {
           width: { sm: `calc(100% - ${drawerWidth}px)` },
         }}
       >
-        <Toolbar sx={{ gap: "20px", display: "flex", justifyContent: "space-between" }}>
-          {/* <Typography variant="h6" color={"secondary.primary"}>Calme</Typography> */}
+        <Toolbar
+          sx={{ gap: "20px", display: "flex", justifyContent: "space-between" }}
+        >
           <Box>
-        {/* <Typography variant="h4" color={"primary"} align="center">
-          Inicia sesion
-        </Typography> */}
-        <img
-          src="https://res.cloudinary.com/dnqfh2chg/image/upload/v1680267428/03_nemivw.png"
-          alt=""
-          style={{ width: "70px" }}
-        />
-      </Box>
+            <img
+              src="https://res.cloudinary.com/dnqfh2chg/image/upload/v1680267428/03_nemivw.png"
+              alt=""
+              style={{ width: "70px" }}
+            />
+          </Box>
           <IconButton
             color="secondary.primary"
             aria-label="open drawer"
@@ -118,7 +114,6 @@ function Navbar(props) {
           >
             <MenuIcon color="secondary.primary" />
           </IconButton>
-          
         </Toolbar>
       </AppBar>
       <Box
