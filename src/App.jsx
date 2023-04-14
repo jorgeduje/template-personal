@@ -1,4 +1,4 @@
-import { BrowserRouter, HashRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "@emotion/react";
 import { theme } from "./ThemeConfig";
 
@@ -10,7 +10,7 @@ function App() {
   const { accessToken } = useSelector((state) => state.authSlice);
 
   return (
-    <HashRouter>
+    <BrowserRouter>
       <ThemeProvider theme={theme}>
         {accessToken ? (
           <Navbar>
@@ -20,7 +20,7 @@ function App() {
           <AppRouter />
         )}
       </ThemeProvider>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 
