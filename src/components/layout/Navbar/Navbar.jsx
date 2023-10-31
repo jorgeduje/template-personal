@@ -20,6 +20,11 @@ import { navigation } from "../../../Router/Navigation";
 import { Avatar } from "@mui/material";
 import LogoutIcon from "@mui/icons-material/Logout";
 
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+
 const drawerWidth = 200;
 
 function Navbar(props) {
@@ -72,14 +77,33 @@ function Navbar(props) {
           );
         })}
       </List>
-      <ListItem disablePadding>
-        <ListItemButton onClick={logOut}>
-          <ListItemIcon>
-            <LogoutIcon color={"secondary"} />
-          </ListItemIcon>
-          <ListItemText primary={"Cerrar sesion"} sx={{ color: "white" }} />
-        </ListItemButton>
-      </ListItem>
+      <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+          <Typography>Uncion</Typography>
+        </AccordionSummary>
+        <AccordionDetails style={{padding: 0}}>
+          <ListItem disablePadding >
+            <ListItemButton onClick={logOut}>
+              <ListItemIcon>
+                <LogoutIcon  />
+              </ListItemIcon>
+              <ListItemText primary={"Cerrar sesion"}  />
+            </ListItemButton>
+          </ListItem>
+          <ListItem disablePadding>
+            <ListItemButton onClick={logOut}>
+              <ListItemIcon>
+                <LogoutIcon  />
+              </ListItemIcon>
+              <ListItemText primary={"Cerrar sesion"}  />
+            </ListItemButton>
+          </ListItem>
+        </AccordionDetails>
+      </Accordion>
     </div>
   );
 

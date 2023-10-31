@@ -6,6 +6,8 @@ import {
   signInWithPopup,
   createUserWithEmailAndPassword,
 } from "firebase/auth";
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
+
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_API_KEY,
   authDomain: import.meta.env.VITE_AUTH_DOMAIN,
@@ -38,6 +40,17 @@ export const sigInWithGoogle = async () => {
 export const register = async ({ email, password }) => {
   try {
     return await createUserWithEmailAndPassword(auth, email, password);
+  } catch (error) {
+    return error;
+  }
+};
+
+const storage = getStorage(app);
+export const getVideo = async (videoName) => {
+  const storageRef = ref(storage, videoName);
+  try {
+    const url = await getDownloadURL(storageRef);
+    return url;
   } catch (error) {
     return error;
   }
